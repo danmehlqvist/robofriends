@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import CardList from './Components/CardList/CardList';
 import SearchBox from './Components/SearchBox/SearchBox';
-import Scroll from './Components/Scroll/Scroll';
+import Title from './Components/Title/Title';
 
 import './App.css';
 import 'tachyons';
@@ -43,7 +43,7 @@ class App extends Component {
     const filteredRobots = this.state.robots.filter(robot => robot.name.toLowerCase().includes(this.state.searchField.toLowerCase()))
     return (
       <div className="App">
-        <h1 className="f1">Robofriends</h1>
+        <Title />
         <SearchBox
           searchChange={this.onSearchChange}
         />
