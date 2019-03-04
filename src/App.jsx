@@ -15,13 +15,6 @@ class App extends Component {
     isLoading: true,
   }
 
-  onSearchChange = (event) => {
-    const value = event.target.value;
-    this.setState({
-      searchField: value
-    });
-  }
-
   componentDidMount = () => {
     fetch('https://jsonplaceholder.typicode.com/users')
       .then(response => response.json())
@@ -47,15 +40,29 @@ class App extends Component {
         <SearchBox
           searchChange={this.onSearchChange}
         />
-        {/* <Scroll> */}
         <CardList
+          onCardClick={this.onCardClick}
           robots={filteredRobots}
           isLoading={this.state.isLoading}
         />
-        {/* </Scroll> */}
       </div>
     );
   }
+
+  onSearchChange = (event) => {
+    const value = event.target.value;
+    this.setState({
+      searchField: value
+    });
+  }
+
+  onCardClick = (indexOfRobotToRemove) => {
+    const newRobots = this.state.robots.filter(x => x.id != indexOfRobotToRemove);
+    this.setState({
+      robots: newRobots,
+    });
+  }
+
 }
 
 export default App;
